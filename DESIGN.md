@@ -24,3 +24,7 @@ Die Texte sind ein KI-unterstützter Arbeitsentwurf nach den Projektideen von Pa
 ## Überarbeitung vom 13.10.2026
 
 Die Startseite wurde nach Pascals Rückmeldung auf eine konkrete Beschreibung und den Studienkontext reduziert. Werbeslogans, dekorative Verlaufsgrafik, Kartenraster und redundante Textblöcke wurden entfernt. Grundlage für weitere Arbeiten ist der versionierte Skill unter `.agents/skills/lernumgebung-deeskalation/SKILL.md`.
+
+## Kursstruktur und Studienkontext
+
+Die Startseite folgt der dokumentierten Saarland-Referenz mit einer schlichten Bereichsnavigation und drei aufklappbaren Lernbereichen aus der bisherigen Projektidee. Sie enthalten Planungsbeschreibungen, noch keine neuen Lerninhalte. Der Studienkontext liegt in einem eigenen Bereich und unterscheidet Fragestellung und Eigenleistung von 3A und 3B. Ohne JavaScript bleiben beide Bereiche lesbar. Fortschritt und Teilnahmefunktionen werden erst mit tatsächlicher Umsetzung angezeigt.
