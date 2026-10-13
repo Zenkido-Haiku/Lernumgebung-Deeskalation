@@ -17,8 +17,7 @@
     showSection(link.hash.slice(1));
     history.pushState(null, "", link.hash);
     const heading = document.querySelector(link.hash + " h1, " + link.hash + " h2");
-    heading.setAttribute("tabindex", "-1");
-    heading.focus();
+    if (heading) { heading.setAttribute("tabindex", "-1"); heading.focus(); }
   }));
   const syncLocation = () => showSection(location.hash === "#studienprojekt" ? "studienprojekt" : "lernangebot");
   window.addEventListener("popstate", syncLocation);

@@ -6,3 +6,9 @@ node_modules/
 Thumbs.db
 participant-data/
 exports/
+
+sicherungen/
+.index-editor.tmp
+__pycache__/
+
+.local/

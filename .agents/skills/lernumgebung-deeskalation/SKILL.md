@@ -56,6 +56,8 @@ Unterscheide Nutzung, Aufgabenergebnis, Selbsteinschätzung, Zufriedenheit und p
 
 ## Arbeitsweise und Prüfung
 
+Entwickle und speichere zunächst lokal auf der externen Festplatte. Übertrage Änderungen nur auf ausdrückliche Anweisung nach GitHub. Für direkte Änderungen durch Pascal steht der lokale Startseiteneditor zur Verfügung; die Bedienung und Dateispeicherung sind in `EDITOR.md` der Arbeitskopie beschrieben. Erhalte seine gespeicherten Text- und Layoutänderungen bei weiteren Arbeiten.
+
 Setze die konkret beauftragte Änderung um und halte die Arbeitsschritte überschaubar. Erweitere Aufgaben nicht ungefragt um neue Lerneinheiten, Plattformwechsel oder Veröffentlichung. Bewahre Pascals wissenschaftliche Eigenleistung und seine tatsächlichen Projekttagebucheinträge; kennzeichne unterstützende Entwürfe als solche.
 
 Prüfe vor Abschluss den Informationsgewinn jedes Textblocks, die fachliche Tragfähigkeit der Aussagen und die tatsächliche Funktion der Bedienelemente. Prüfe geänderte Links und Assets. Bei Übungen prüfe zusätzlich die relevante Eingabe, Speicherung und Auswertung. Führe visuelle Browserprüfung durch, wenn sie verfügbar ist; benenne ihre Grenze andernfalls. Melde knapp, was sich geändert hat und was noch offen bleibt.
