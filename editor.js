@@ -1,16 +1,20 @@
 "use strict";
 (() => {
   const token=document.querySelector('meta[name="editor-token"]').content;
+  const page=document.querySelector('meta[name="editor-page"]')?.content||'index.html';
+  const pageLabels={'index.html':'Startseite','lerneinheiten/glasl.html':'Glasl','lerneinheiten/watzlawick.html':'Watzlawick','lerneinheiten/schulz-von-thun.html':'Schulz von Thun'};
   let version=document.querySelector('meta[name="editor-version"]').content;
   let selected=null, block=null, preview=false, undo=[], redo=[], typing=false, drag=null, busy=false, textRange=null;
   const toolbar=document.createElement('div'); toolbar.className='editor-toolbar'; toolbar.dataset.editor='toolbar';
-  toolbar.innerHTML=`<div class="editor-row"><strong>Startseite bearbeiten</strong><button data-action="save" class="primary">Speichern</button><button data-action="preview">Vorschau</button><button data-action="undo">Rückgängig</button><button data-action="redo">Wiederholen</button><span class="editor-state" role="status" aria-live="polite">Unverändert</span></div>
+  toolbar.innerHTML=`<div class="editor-row"><strong data-control="page-label">Seite bearbeiten</strong><button data-action="save" class="primary">Speichern</button><button data-action="preview">Vorschau</button><button data-action="undo">Rückgängig</button><button data-action="redo">Wiederholen</button><span class="editor-state" role="status" aria-live="polite">Unverändert</span></div>
   <div class="editor-row editor-tools"><button data-action="text">Text einfügen</button><button data-action="heading">Überschrift einfügen</button><button data-action="image">Bild einfügen</button><button data-action="up">Nach oben</button><button data-action="down">Nach unten</button><button data-action="delete">Element löschen</button><button data-action="bold" aria-pressed="false" title="Markierten Text fett formatieren; ohne Markierung das ganze Textfeld"><strong>Fett</strong></button>
   <label>Schrift <input data-control="font" type="number" min="10" max="60" step="1" aria-label="Schriftgröße in Pixeln"> px</label><label>Breite <input data-control="width" type="range" min="25" max="100" step="5" value="100" aria-label="Breite in Prozent"><output data-control="width-label">100 %</output></label><label>Feldhöhe <input data-control="height" type="number" min="0" max="1600" step="10" placeholder="Auto" aria-label="Mindesthöhe des Textfelds in Pixeln"> px</label><button data-action="size-auto">Feldgröße automatisch</button><label>Ausrichtung <select data-control="align"><option value="left">Links</option><option value="center">Mittig</option><option value="right">Rechts</option></select></label><button data-action="alt">Bildbeschreibung</button><input data-control="file" type="file" accept="image/png,image/jpeg,image/gif,image/webp" hidden></div>
-  <details class="editor-service" data-editor="service"><summary>Lokaler Dienst</summary><p>Der Dienst muss laufen, damit der Editor unter seiner Adresse erreichbar bleibt. Schließen des Browser-Tabs beendet ihn nicht.</p><button data-action="stop">Lokalen Dienst ausschalten</button></details><p class="editor-help">Text anklicken und schreiben. Markierten Text mit „Fett“ formatieren. Textfelder über Breite/Feldhöhe oder am Eckgriff vergrößern. Elemente mit den Pfeilen verschieben; Modulblöcke auch am Griff ziehen. Speichern legt vorher eine Sicherung an.</p>`;
+  <nav class="editor-row" aria-label="Editorseiten"><a href="/editor">Startseite</a><a href="/lerneinheiten/glasl.html?editor=1">Glasl</a><a href="/lerneinheiten/watzlawick.html?editor=1">Watzlawick</a><a href="/lerneinheiten/schulz-von-thun.html?editor=1">Schulz von Thun</a></nav><details class="editor-service" data-editor="service"><summary>Lokaler Dienst</summary><p>Der Dienst muss laufen, damit der Editor unter seiner Adresse erreichbar bleibt. Schließen des Browser-Tabs beendet ihn nicht.</p><button data-action="stop">Lokalen Dienst ausschalten</button></details><p class="editor-help">Text anklicken und schreiben. Links zu anderen Seiten öffnen sich nur in der Vorschau. Markierten Text mit „Fett“ formatieren. Textfelder über Breite/Feldhöhe oder am Eckgriff vergrößern. Elemente mit den Pfeilen verschieben; Modulblöcke auch am Griff ziehen. Speichern legt vorher eine Sicherung an.</p>`;
   document.body.prepend(toolbar);
+  toolbar.querySelector('[data-control="page-label"]').textContent=(pageLabels[page]||'Seite')+' bearbeiten';
+  toolbar.querySelectorAll('nav a').forEach(a=>{if((page==='index.html'&&a.getAttribute('href')==='/editor')||a.getAttribute('href')==='/'+page+'?editor=1')a.setAttribute('aria-current','page');});
   const q=s=>toolbar.querySelector(s), status=message=>q('.editor-state').textContent=message;
-  const areas=()=>[document.querySelector('.page-header'),document.querySelector('main'),document.querySelector('footer')];
+  const areas=()=>[document.querySelector('.page-header'),document.querySelector('main'),document.querySelector('footer')].filter(Boolean);
   function clean(node){
     const clone=node.cloneNode(true);
     clone.querySelectorAll('[data-editor]').forEach(e=>e.remove());
@@ -45,7 +49,7 @@
   function restore(s){areas().forEach((a,i)=>a.innerHTML=s[i]);selected=block=null;typing=false;textRange=null;setup();window.dispatchEvent(new Event('hashchange'));changed();}
   function findBlock(element){
     const group=element.closest('.learning-area,.academic-modules article,figure'); if(group)return group;
-    let current=element; while(current.parentElement&&!current.parentElement.matches('main > section,.page-header,footer'))current=current.parentElement;
+    let current=element; while(current.parentElement&&!current.parentElement.matches('main,main > section,.stage-body,.page-header,footer'))current=current.parentElement;
     return current;
   }
   function select(element){
@@ -126,7 +130,7 @@
     document.querySelectorAll('[data-editor="resize"]').forEach(e=>e.remove());
     areas().forEach(a=>{
       a.querySelectorAll('details').forEach(e=>e.open=!preview);
-      a.querySelectorAll('p,h1,h2,h3,h4,summary,figcaption,li').forEach(e=>{if(preview)e.removeAttribute('contenteditable');else e.setAttribute('contenteditable','true');});
+      a.querySelectorAll('p,h1,h2,h3,h4,summary,figcaption,li,.model-description,.model-open').forEach(e=>{if(preview)e.removeAttribute('contenteditable');else e.setAttribute('contenteditable','true');});
       a.querySelectorAll('.editor-grip').forEach(e=>e.remove());
       if(!preview)a.querySelectorAll('.learning-area,.academic-modules article,figure').forEach(e=>{
         const grip=document.createElement('button');grip.type='button';grip.className='editor-grip';grip.textContent='Block verschieben';grip.dataset.editor='grip';grip.draggable=true;
@@ -149,7 +153,8 @@
     const data=await response.json();if(!response.ok)throw new Error(data.error||'Speichern fehlgeschlagen.');return data;
   }
   function insert(element){
-    const section=document.querySelector('main > section:not([hidden])')||document.getElementById('lernangebot');
+    const main=document.querySelector('main');
+    const section=block&&main.contains(block)?block.parentElement:document.querySelector('main > section:not([hidden])')||main;
     if(block&&section.contains(block))block.after(element);else section.append(element);
     setup();select(element.matches('figure')?element.querySelector('img'):element);changed();
   }
@@ -162,7 +167,7 @@
     }
     if(action==='save'){
       const html=exportHTML(), state=key(snapshot());busy=true;controls();status('Speichert …');
-      try{const data=await post('/api/save',{html,version});version=data.version;saved=state;status(dirty()?'Gespeichert; weitere Änderungen offen':'Gespeichert · Sicherung angelegt');}
+      try{const data=await post('/api/save',{html,version,page});version=data.version;saved=state;status(dirty()?'Gespeichert; weitere Änderungen offen':'Gespeichert · Sicherung angelegt');}
       catch(error){status(error.message);}finally{busy=false;controls();}return;
     }
     if(action==='preview'){preview=!preview;document.querySelectorAll('.editor-selected').forEach(e=>e.classList.remove('editor-selected'));selected=block=null;setup();q('[data-action="preview"]').textContent=preview?'Weiter bearbeiten':'Vorschau';return;}
@@ -186,7 +191,8 @@
   toolbar.addEventListener('mousedown',event=>{captureRange();if(event.target.closest('button'))event.preventDefault();});
   document.addEventListener('selectionchange',captureRange);
   areas().forEach(a=>{
-    a.addEventListener('click',event=>{if(preview||event.target.closest('[data-editor]'))return;const e=event.target.closest('p,h1,h2,h3,h4,summary,figcaption,li,img');if(e&&a.contains(e))select(e);if(e&&e.tagName==='SUMMARY')event.preventDefault();});
+    a.addEventListener('click',event=>{if(preview||event.target.closest('[data-editor]'))return;const anchor=event.target.closest('a[href]');if(anchor){event.preventDefault();const href=anchor.getAttribute('href');if(href.startsWith('#')&&!anchor.closest('[contenteditable]')){const target=document.getElementById(href.slice(1));if(target){target.scrollIntoView();const offset=getComputedStyle(toolbar).position==='sticky'?toolbar.getBoundingClientRect().height:0;window.scrollBy(0,-offset-16);}return;}}const e=event.target.closest('p,h1,h2,h3,h4,summary,figcaption,li,img,.model-description,.model-open');if(e&&a.contains(e))select(e);if(e&&e.tagName==='SUMMARY')event.preventDefault();});
+    a.addEventListener('auxclick',event=>{if(!preview&&event.target.closest('a[href]'))event.preventDefault();});
     a.addEventListener('focusin',event=>{if(preview||!event.target.hasAttribute('contenteditable'))return;select(event.target);typing=false;});
     a.addEventListener('beforeinput',event=>{if(preview)return;if(!typing){remember();typing=true;} if(['insertParagraph','insertLineBreak'].includes(event.inputType)){event.preventDefault();document.execCommand('insertLineBreak');}});
     a.addEventListener('input',changed);
@@ -207,7 +213,7 @@
   });
   q('[data-control="file"]').addEventListener('change',async event=>{
     const file=event.target.files[0];if(!file)return;event.target.value='';busy=true;controls();status('Bild wird eingefügt …');
-    try{const data=await post('/api/image',file,false);remember();const figure=document.createElement('figure');figure.className='editor-image';const img=document.createElement('img');img.src=data.src;img.alt=file.name.replace(/\.[^.]+$/,'');img.style.width='100%';figure.append(img);const caption=document.createElement('figcaption');caption.textContent='Bildunterschrift';figure.append(caption);insert(figure);}
+    try{const data=await post('/api/image',file,false);remember();const figure=document.createElement('figure');figure.className='editor-image';const img=document.createElement('img');img.src=(page.startsWith('lerneinheiten/')?'../':'')+data.src;img.alt=file.name.replace(/\.[^.]+$/,'');img.style.width='100%';figure.append(img);const caption=document.createElement('figcaption');caption.textContent='Bildunterschrift';figure.append(caption);insert(figure);}
     catch(error){status(error.message);}finally{busy=false;controls();}
   });
   window.addEventListener('beforeunload',event=>{if(dirty()){event.preventDefault();event.returnValue='';}});

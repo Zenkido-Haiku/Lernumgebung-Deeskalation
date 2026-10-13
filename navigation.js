@@ -19,7 +19,14 @@
     const heading = document.querySelector(link.hash + " h1, " + link.hash + " h2");
     if (heading) { heading.setAttribute("tabindex", "-1"); heading.focus(); }
   }));
-  const syncLocation = () => showSection(location.hash === "#studienprojekt" ? "studienprojekt" : "lernangebot");
+  const syncLocation = () => {
+    showSection(location.hash === "#studienprojekt" ? "studienprojekt" : "lernangebot");
+    if (location.hash === "#einheit-1-2") {
+      const unit = document.getElementById("einheit-1-2");
+      if (unit) { unit.open = true; unit.scrollIntoView({block:"start"}); }
+    }
+  };
+  syncLocation();
   window.addEventListener("popstate", syncLocation);
   window.addEventListener("hashchange", syncLocation);
 })();

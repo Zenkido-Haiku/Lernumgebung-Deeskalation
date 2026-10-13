@@ -68,3 +68,42 @@ figure.editor-image { margin: 20px 0; } figure.editor-image img { max-width: 100
 .module-progress progress::-moz-progress-bar { background:var(--blue); border-radius:6px; }
 .module-progress-value { min-width:4ch; text-align:right; font-size:14px; font-variant-numeric:tabular-nums; }
 @media(max-width:600px) { .module-heading { flex-wrap:wrap; gap:8px; } .module-progress { margin-left:auto; } .module-progress { max-width:100%; } .module-progress progress { width:min(280px, calc(100vw - 110px)); } }
+
+/* Model selection inside unit 1.2. */
+.unit-content { padding:20px 16px; background:var(--paper); }
+.learning-area .unit-content .unit-introduction { padding:0; margin:0 0 22px; max-width:100%; font-size:15px; }
+.model-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; }
+.model-link { display:flex; flex-direction:column; min-width:0; color:var(--text); text-decoration:none; }
+.model-link img { display:block; width:100%; height:auto; border:1px solid var(--line); }
+.model-link h3 { font-size:18px; line-height:1.4; margin:14px 0 8px; }
+.model-description { font-size:14px; }
+.model-open { display:block; margin-top:auto; padding-top:12px; color:var(--blue); font-size:14px; text-decoration:underline; }
+.model-link:hover img { border-color:var(--blue); }
+.model-link:focus-visible { outline:3px solid var(--orange); outline-offset:5px; }
+.lesson-path { color:var(--muted); font-size:14px; }
+.lesson-placeholder { margin-top:30px; padding:20px; background:var(--paper); border-left:3px solid var(--line); }
+.lesson-placeholder p { margin:0; }
+@media(max-width:700px) { .model-grid { grid-template-columns:1fr; gap:26px; } .model-link img { max-width:360px; } }
+
+.model-author { font-weight:400; font-size:16px; color:var(--muted); }
+
+/* Reading and video on the Glasl lesson page. */
+.lesson-meta { font-size:14px; color:var(--muted); }
+.lesson-tabs { display:flex; flex-wrap:wrap; gap:20px; padding:14px 0; border-block:1px solid var(--line); margin:24px 0; }
+.lesson-section { margin-top:36px; scroll-margin-top:20px; }
+.lesson-video { display:block; width:100%; aspect-ratio:16/9; background:#16324c; }
+.video-caption { font-size:14px; color:var(--muted); margin-top:10px; }
+.lesson-graphic { margin:24px 0; max-width:600px; }
+.lesson-graphic img { display:block; width:100%; height:auto; }
+.lesson-graphic figcaption { color:var(--muted); font-size:13px; margin-top:8px; }
+.phase-overview { border-left:3px solid var(--blue); padding:12px 18px; background:var(--paper); margin-bottom:18px; }
+.phase-overview p { margin:0 0 6px; }
+.stage-text { margin:10px 0; border:1px solid var(--line); }
+.stage-text summary { cursor:pointer; color:var(--blue); padding:12px 16px; font-weight:bold; }
+.stage-body { padding:4px 16px 16px; }
+.stage-body p:last-child { margin-bottom:0; }
+.reflection-prompt { border-left:3px solid var(--orange); padding:10px 14px; background:var(--paper); }
+.sources { border-top:1px solid var(--line); padding-top:26px; font-size:14px; }
+.sources li { margin-bottom:12px; }
+
+.lesson-video::cue { font-size: clamp(14px, 1.7vw, 26px); }

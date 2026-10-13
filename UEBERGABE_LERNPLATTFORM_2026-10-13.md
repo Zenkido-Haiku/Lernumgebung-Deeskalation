@@ -143,3 +143,36 @@ Am 13.10.2026 auf Nutzervorgabe lokal eingebaut: drei untereinander angeordnete 
 ## Modulfortschritt
 
 Rechts neben jeder Modulüberschrift steht ein zugänglicher Fortschrittsbalken mit Prozentangabe. Aktuell 0 %, da nur Themenplatzhalter vorliegen. progress.js berechnet künftig den Anteil abgeschlossener Inhaltsgewichte: Summe erledigter Gewichte / Summe aller Gewichte im Modul. Inhaltscontainer benötigen stabile data-content-id, positive data-progress-weight und data-completed. Text-Checkboxen mit data-completion-toggle werden unterstützt, sobald echte Texte eingebaut werden; Videoabschluss und serverseitige personenspezifische Speicherung sind noch anzubinden. Kein Abhaken bloßer Themenplatzhalter. 100 % wird nur bei vollständig abgeschlossenen gewichteten Inhalten angezeigt. Gewichtung anhand des geschätzten Bearbeitungsumfangs mit Pascal festlegen. Bearbeitungsfortschritt ist kein Kompetenznachweis.
+
+## Veröffentlichung auf ausdrücklichen Nutzerauftrag
+
+Am 13.10.2026 hat Pascal die öffentliche Repository-Sichtbarkeit und die Veröffentlichung ausdrücklich freigegeben. Repository jetzt öffentlich; GitHub Pages aus main / (root) aktiviert. Online-Adresse: https://zenkido-haiku.github.io/Lernumgebung-Deeskalation/ . Onlineansicht mit Modulen, Fortschrittsanzeigen und Aufklappen geprüft. Lokal bleibt der Autoreneditor; Zugang und Teilnehmer-Speicherung sind noch offen. Ältere Aussagen „privates Repository“ und „keine Veröffentlichung beauftragt“ gelten für den früheren Stand. Weitere Uploads nur innerhalb beauftragter Änderungen.
+
+## Lokale Weiterarbeit: Abschnitt 1.2
+
+Auf Nutzervorgabe drei verlinkte, schematische SVG-Grafiken nebeneinander eingebaut: Glasl, Watzlawick und Schulz von Thun. Kurze Abschnittsbeschreibung, eigene HTML-Seiten unter lerneinheiten/ und Rücklink zu aufgeklapptem Abschnitt 1.2. Watzlawick und Schulz von Thun enthalten noch Platzhalter. Glasl ist inzwischen als lokale erste Arbeitsfassung ausgearbeitet; siehe Ergänzung unten. SVGs sind eigene schematische Orientierungsgrafiken. Onlineversion bleibt auf Nutzerwunsch unverändert; kein Push. Editor inzwischen auch für die Modellseiten erweitert; siehe Ergänzung „Modellseiten im Editor“.
+
+Editor-Korrektur: Links innerhalb der bearbeitbaren Seitenbereiche werden im Bearbeitungsmodus bei Klick und Mittelklick nicht geöffnet. Vorschau und Teilnehmeransicht behalten Linknavigation. Modellüberschriften zeigen Modelltitel und Vertreter auf getrennten Zeilen; Beschreibungen und Linkbeschriftungen sind ebenfalls editierbar. Nur lokal geändert.
+
+
+## Lokale Glasl-Lerneinheit: Text und Erklärvideo
+
+Auf ausdrücklichen Nutzerauftrag vollständige erste Arbeitsfassung unter `lerneinheiten/glasl.html` erstellt: etwa zehnminütiges Erklärvideo mit allen neun Stufen, ergänzender Lerntext, aufklappbare Stufenmerkmale, Reflexionsfragen und Quellen. Fiktiver Konflikt zweier erwachsener Fachkräfte Lena/Amir über Lernzeit und Spieletreff im selben Jugendzentrumsraum; extreme spätere Stufen als bewusste Modellveranschaulichung, kein behaupteter Praxisverlauf.
+
+Eigene recherchierte NotebookLM-Quelle und vertiefender Lerntext liegen unter `D:/Studium Bildungswissenschaft/output/video/Lernumgebung-Glasl`. Notebook: https://notebook.google.com/notebook/415cd4fe-9f40-433f-8edb-f290020074b0 . Originalvideo und Originalaudio unverändert archiviert; fünf problematische bzw. unnötige Sätze der erzeugten Audiospur dokumentiert entfernt (`Audio-Korrektur.json`). Bilder und Hervorhebungen anhand des tatsächlich gesprochenen Audios gestaltet: neun neue Motive, 61 zeitlich abgestimmte Ansichten, 211 deutsche Untertitel. Die eigene Stufentreppe und Projektfarben werden wieder aufgegriffen.
+
+Lokale Auslieferung: `assets/lerneinheiten/glasl/Glasl-Ein-Raumkonflikt.mp4`, `Untertitel.vtt`, `Poster.jpg`, `Lerntext-Glasl.txt`. Browserplayer, Download und ergänzender Text auf derselben Seite. Inhalt als KI-unterstützter Entwurf gekennzeichnet; Pascals fachliche und didaktische Prüfung bleibt erforderlich. Keine Teilnehmerantworten, Fortschrittsspeicherung oder Lernerfolgsdaten ergänzt. Keine YouTube-Veröffentlichung und kein GitHub-Push; öffentliche Vorschau bleibt beim früheren Stand. Editor inzwischen auch für die Modellseiten erweitert; siehe Ergänzung unten.
+
+Lokaler Videoplayer: editor_server.py unterstützt für Video-/Audioassets einzelne HTTP-Bytebereiche (206/416), damit Vor- und Zurückspringen vor dem vollständigen Download funktioniert. Wiedergabe, Sprung zu späterer Stufe, deutsche VTT-Untertitel und aufklappbarer Stufentext auf der Glasl-Seite im Browser geprüft. Dienst für diese Ergänzung kontrolliert über die Editor-Schaltfläche neu gestartet; bestehender Editor-Token ausschließlich im Speicher übernommen, vorhandene Benutzer-Editoransichten nicht neu geladen.
+
+
+## Modellseiten im Editor
+
+Auf Nutzerhinweis „und der editor?“ die Autorenhilfe auf alle drei bestehenden Modellseiten erweitert. Direkter Glasl-Editor: http://127.0.0.1:8767/lerneinheiten/glasl.html?editor=1 . Auswahl links in der Werkzeugleiste; aktuelle Seite klar benannt. Texte/Überschriften, Stufenbeschreibungen und Quellen bearbeitbar; neue Bilder werden relativ zur jeweiligen Seite eingebunden. Abschnittssprünge funktionieren auch im Bearbeitungsmodus; Zielseitenlinks weiterhin nur in der Vorschau.
+
+Serverseitig freigegebene Seitenliste, eigene Versionsprüfung pro Seite und Sicherung vor Speichern. Glasl-TXT-Download wird aus aktuellem Lerntext und Quellen aktualisiert. Startseiten- und Videodatei bei Browser-Speichertest bytegleich erhalten; Testtext per Rückgängig entfernt. Modellseiten, seitengetrennte Speicherung, Versionskonflikt, Pfad- und Assetprüfung in isolierter Serverumgebung geprüft; echte Browserprüfung für Bearbeitung, Rückgängig, Speichern, Vorschau, interne Navigation und Layout erfolgreich. Nur lokale Änderung.
+
+
+## Erneute Veröffentlichung freigegeben
+
+Pascal hat nach eigener Bearbeitung der Glasl-Seite ausdrücklich bestätigt: „so wie ich es jetzt bearbeitet hab, ist es ok. Binde es auf github ein.“ Der gespeicherte Nutzerstand wird unverändert zusammen mit Textdownload, Erklärvideo, deutschen Untertiteln, Modellseiten und Editor-Erweiterung auf main übertragen. Frühere Festlegungen „Onlineversion unverändert“ beziehen sich auf die lokale Entwicklungsphase vor diesem Veröffentlichungsauftrag. Öffentliches Ziel für Glasl: https://zenkido-haiku.github.io/Lernumgebung-Deeskalation/lerneinheiten/glasl.html . Weitere eigene Bearbeitung bleibt zunächst lokal; der Editor wird weiterhin nur vom lokalen Dienst betrieben.

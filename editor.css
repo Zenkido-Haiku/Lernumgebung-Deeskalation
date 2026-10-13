@@ -26,3 +26,5 @@ figure.editor-image {margin:20px 0;} figure.editor-image figcaption {font-size:1
 .editor-toolbar [data-action="bold"][aria-pressed="true"] {background:#bfd2e5;}
 
 .editor-resize::after {content:"↘";}
+
+.editor-toolbar nav a[aria-current="page"] {font-weight:bold;}
