@@ -3,63 +3,32 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Eine selbstständig nutzbare Vorbereitung auf praktische Deeskalationsübungen für pädagogische Fachkräfte. Studentisches Projekt von Pascal Anna bei Zenkido®.">
-<meta name="color-scheme" content="light">
-<title>Deeskalation verstehen · Lernumgebung</title>
-<style>
-:root{--blue:#004c97;--blue-soft:#bfd2e5;--orange:#c84f0e;--ink:#16324c;--muted:#536577;--paper:#f5f5f5;--white:#fff;--line:#dce4eb}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:2rem}body{margin:0;background:var(--white);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.65}a{color:var(--blue)}a:focus-visible{outline:3px solid var(--orange);outline-offset:5px}.skip{position:absolute;top:-100px;left:20px;background:white;padding:12px;z-index:10}.skip:focus{top:12px}
-.wrap{width:min(1180px,calc(100% - 64px));margin:auto}header{border-bottom:1px solid var(--line)}.head{min-height:114px;display:flex;align-items:center;justify-content:space-between;gap:30px}.identity{display:flex;align-items:center;gap:26px}.logo{width:208px;height:auto}.identity small{display:block;max-width:190px;border-left:1px solid var(--line);padding-left:24px;color:var(--muted);font-size:12px;line-height:1.6}.identity strong{color:var(--blue);font-size:13px}nav{display:flex;gap:30px}nav a{text-decoration:none;font-size:14px;font-weight:600}nav a:hover{text-decoration:underline}
-.hero{padding:80px 0 68px;background:linear-gradient(125deg,#f5f5f5 0%,#fff 75%)}.hero-grid{display:grid;grid-template-columns:1.18fr 1fr;align-items:center;gap:65px}.eyebrow{color:var(--orange);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.7px;margin:0 0 24px}.hero h1{font-size:clamp(42px,5vw,68px);line-height:1.08;letter-spacing:-2.5px;font-weight:700;margin:0 0 25px}.hero h1 span{color:var(--blue)}.intro{color:var(--muted);max-width:530px;font-size:18px;line-height:1.7;margin:0 0 28px}.button{display:inline-flex;align-items:center;gap:26px;background:var(--blue);color:white;padding:13px 22px;text-decoration:none;border-radius:3px;font-size:14px;font-weight:600}.button:hover{background:#16324c}.status{display:flex;align-items:center;gap:8px;margin:19px 0 0;font-size:12px;color:var(--muted)}.status:before{content:"";width:7px;height:7px;background:var(--orange);border-radius:50%}
-.visual{position:relative;background:var(--blue);border-radius:5px;min-height:370px;padding:32px;color:white;overflow:hidden}.visual:before{content:"";position:absolute;width:300px;height:300px;border:1px solid #ffffff21;border-radius:50%;right:-145px;top:-170px}.visual-label{font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:#bfd2e5}.visual svg{display:block;width:100%;height:auto;margin:20px 0 8px}.visual-note{font-size:17px;line-height:1.5;max-width:320px;margin:0}.visual-note span{color:#bfd2e5;display:block;font-size:13px;margin-top:8px}
-.strip{border-bottom:1px solid var(--line)}.strip-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:23px 0;font-size:13px}.strip-inner strong{color:var(--blue)}.strip-inner span{color:var(--muted)}
-section.content{padding:72px 0}.section-top{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;margin-bottom:36px}h2{font-size:clamp(26px,3vw,36px);line-height:1.2;letter-spacing:-.7px;margin:0 0 20px}p{margin:0 0 18px}.section-top p{color:var(--muted);margin:0}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}.step{border-top:2px solid var(--blue-soft);padding-top:22px}.number{font-size:12px;letter-spacing:1px;color:var(--orange);font-weight:700}h3{font-size:20px;line-height:1.4;margin:12px 0}.step p{color:var(--muted);font-size:15px;margin:0}.limit{margin-top:38px;padding:22px 26px;background:var(--paper);border-left:3px solid var(--orange);font-size:14px}.limit strong{display:block;margin-bottom:5px}
-.context{background:var(--paper)}.context-header{max-width:760px;margin-bottom:32px}.context-header>p{color:var(--muted)}.modules{display:grid;grid-template-columns:1fr 1fr;gap:26px}.module{background:white;padding:30px;border:1px solid var(--line);border-radius:3px}.module .label{color:var(--orange);font-size:12px;letter-spacing:1px;font-weight:700}.module p{font-size:15px;color:var(--muted);margin:0}.context-foot{font-size:13px;color:var(--muted);margin:26px 0 0}
-footer{padding:30px 0;border-top:1px solid var(--line)}.footer-inner{display:flex;justify-content:space-between;gap:30px;font-size:12px;color:var(--muted)}footer strong{display:block;color:var(--ink);font-size:13px;margin-bottom:3px}.footer-note{max-width:460px}
-@media(max-width:850px){.identity small{display:none}.hero-grid{gap:30px;grid-template-columns:1fr 1fr}.hero h1{font-size:48px}.visual{padding:24px;min-height:330px}.intro{font-size:16px}.section-top{gap:30px}}
-@media(max-width:650px){.wrap{width:calc(100% - 40px)}.head{min-height:105px;gap:20px;flex-wrap:wrap;padding:22px 0}.logo{width:175px}nav{gap:18px}nav a{font-size:12px}.hero{padding:45px 0}.hero-grid,.section-top,.steps,.modules{grid-template-columns:1fr}.hero h1{font-size:47px;letter-spacing:-1.8px}.visual{min-height:auto;padding:26px}.visual svg{max-width:370px;margin:12px auto}.strip-inner{flex-wrap:wrap;gap:8px 20px}.section-top{gap:0;margin-bottom:28px}.steps{gap:26px}section.content{padding:48px 0}.footer-inner{flex-direction:column;gap:16px}.module{padding:24px}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-</style>
+<meta name="description" content="Geplantes Selbstlernangebot zu Eskalationsdynamiken und Deeskalation für pädagogische Fachkräfte. Ein Studienprojekt von Pascal Anna bei Zenkido®.">
+<title>Lernumgebung Deeskalation</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<a class="skip" href="#main">Zum Inhalt</a>
-<header><div class="wrap head">
-<div class="identity"><a href="https://www.fernuni-hagen.de/" aria-label="FernUniversität in Hagen – Website"><img class="logo" src="assets/fernuni-logo.svg" alt="FernUniversität in Hagen"></a><small><strong>Studentisches Projekt</strong><br>B.A. Bildungswissenschaft</small></div>
-<nav aria-label="Hauptnavigation"><a href="#lernidee">Die Lernidee</a><a href="#kontext">Projektkontext</a></nav>
-</div></header>
-<main id="main">
-<section class="hero"><div class="wrap hero-grid">
-<div><p class="eyebrow">Lernumgebung · Deeskalation</p><h1>Dynamiken erkennen.<br><span>Handeln vorbereiten.</span></h1>
-<p class="intro">Ein Selbstlernangebot für pädagogische Fachkräfte: Eskalation besser verstehen, die eigene Wahrnehmung hinterfragen und sich auf praktische Deeskalationsübungen vorbereiten.</p>
-<a class="button" href="#lernidee">Die Lernidee kennenlernen <span aria-hidden="true">↓</span></a>
-<p class="status">Im Aufbau · Erste Projektversion</p></div>
-<div class="visual"><div class="visual-label">Vom Beobachten zum bewussten Handeln</div>
-<svg viewBox="0 0 400 220" role="img" aria-labelledby="path-title path-desc"><title id="path-title">Wahrnehmen, einordnen, reflektieren</title><desc id="path-desc">Drei verbundene Schritte beschreiben die Lernidee.</desc>
-<path d="M38 76 C110 76 104 164 195 164 S278 76 362 76" fill="none" stroke="#bfd2e5" stroke-width="2"/>
-<circle cx="38" cy="76" r="20" fill="#fff"/><circle cx="195" cy="164" r="20" fill="#fff"/><circle cx="362" cy="76" r="20" fill="#fff"/>
-<g fill="#004c97" font-family="Arial,sans-serif" text-anchor="middle" font-size="15" font-weight="700"><text x="38" y="81">1</text><text x="195" y="169">2</text><text x="362" y="81">3</text></g>
-<g fill="#fff" font-family="Arial,sans-serif" text-anchor="middle" font-size="12"><text x="57" y="39">Wahrnehmen</text><text x="195" y="210">Einordnen</text><text x="341" y="39">Reflektieren</text></g>
-<path d="M290 94 l10 4 -4 10" fill="none" stroke="#bfd2e5" stroke-width="2"/></svg>
-<p class="visual-note">Lernen beginnt mit einem anderen Blick.<span>Auf die Situation. Auf das Gegenüber. Auf sich selbst.</span></p>
-</div></div></section>
-<div class="strip"><div class="wrap strip-inner"><strong>Für pädagogische Fachkräfte</strong><span>Selbstständig und im eigenen Tempo</span><span>Vorbereitung auf die Praxis</span></div></div>
-<section class="content" id="lernidee"><div class="wrap">
-<div class="section-top"><div><p class="eyebrow">Die Lernidee</p><h2>Verstehen. Erproben.<br>Den eigenen Blick schärfen.</h2></div><p>Konflikte begegnen uns in unterschiedlichen pädagogischen Arbeitsfeldern. Diese Lernumgebung soll Grundlagen vermitteln und Raum geben, Beobachtungen und eigene Deutungen bewusst zu prüfen.</p></div>
-<div class="steps">
-<article class="step"><span class="number">01 / VERSTEHEN</span><h3>Eskalationsdynamiken</h3><p>Grundlagen und Modelle helfen dabei, die Entwicklung von Konflikten einzuordnen und mögliche Ansatzpunkte für Deeskalation zu erkennen.</p></article>
-<article class="step"><span class="number">02 / ERPROBEN</span><h3>Interaktiv lernen</h3><p>Geplant sind Videoanalysen, Zuordnungsaufgaben und Quizfragen, mit denen sich Wissen an Beispielsituationen anwenden lässt.</p></article>
-<article class="step"><span class="number">03 / REFLEKTIEREN</span><h3>Eigene Perspektiven</h3><p>Reflexionsimpulse sollen eigene Wahrnehmungsmuster, Wissenslücken und den Bedarf an weiterführenden praktischen Übungen sichtbar machen.</p></article>
-</div>
-<div class="limit"><strong>Eine Grundlage für praktische Übungen</strong>Das Angebot bereitet auf Präsenzübungen vor. Körperliche Interaktion, Rollenspiele und situatives Handeln brauchen zusätzlich einen praktischen Übungsraum mit direktem Feedback.</div>
-</div></section>
-<section class="content context" id="kontext"><div class="wrap">
-<div class="context-header"><p class="eyebrow">Bildungswissenschaftlicher Kontext</p><h2>Ein Projekt zwischen digitalem Lernen<br>und pädagogischer Praxis.</h2><p>Pascal Anna entwickelt die Lernumgebung im Rahmen seines Studiums der Bildungswissenschaft an der FernUniversität in Hagen und seiner Tätigkeit bei Zenkido®. Zwei Perspektiven bilden den geplanten wissenschaftlichen Rahmen:</p></div>
-<div class="modules">
-<article class="module"><span class="label">MODUL 3A · MEDIENPÄDAGOGIK</span><h3>Möglichkeiten und Grenzen verstehen</h3><p>Wie lassen sich pädagogische Fortbildungen digital gestalten, wenn ein Teil des Lernens körperliche Präsenz erfordert? Im Mittelpunkt stehen medienpädagogische Bezüge und die Gestaltung einer sinnvollen Vorbereitung.</p></article>
-<article class="module"><span class="label">MODUL 3B · PROJEKTARBEIT</span><h3>Entwickeln, erproben und evaluieren</h3><p>Die Lernumgebung soll mit einer kleinen Pilotgruppe aus verschiedenen pädagogischen Arbeitsfeldern erprobt werden. Rückmeldungen sollen helfen, Verständlichkeit, Nutzbarkeit und weitere Lernbedarfe zu untersuchen.</p></article>
-</div>
-<p class="context-foot">Die Pilotphase und die Lerninhalte sind in Vorbereitung. Der Teilnehmerzugang wird später eingerichtet.</p>
-</div></section>
+<a class="skip" href="#inhalt">Zum Inhalt</a>
+<header class="page-header">
+<a href="https://www.fernuni-hagen.de/" aria-label="Website der FernUniversität in Hagen"><img src="assets/fernuni-logo.svg" width="250" height="47" alt="FernUniversität in Hagen"></a>
+<p>Studienprojekt von Pascal Anna<br>B.A. Bildungswissenschaft</p>
+</header>
+<main id="inhalt">
+<h1>Lernumgebung Deeskalation</h1>
+<p class="introduction">Diese Lernumgebung richtet sich an pädagogische Fachkräfte, die sich selbstständig auf praktische Deeskalationsübungen vorbereiten möchten.</p>
+<p>Geplant sind Grundlagen zu Eskalationsdynamiken und Deeskalation, Videoanalysen, Zuordnungsaufgaben sowie Übungen zur Selbstreflexion. Dabei geht es um die Einschätzung von Beispielsituationen und die Auseinandersetzung mit der eigenen Wahrnehmung.</p>
+<p>Körperliche Interaktion und situatives Handeln werden anschließend in angeleiteten Präsenzübungen aufgegriffen. Das Selbstlernangebot soll dafür eine gemeinsame Wissensgrundlage schaffen.</p>
+<section aria-labelledby="projektkontext">
+<h2 id="projektkontext">Bildungswissenschaftlicher Kontext</h2>
+<p>Ich entwickle das Angebot im Rahmen meines Studiums an der FernUniversität in Hagen und meiner Tätigkeit bei Zenkido®. Das Projekt verbindet zwei unterschiedliche wissenschaftliche Perspektiven:</p>
+<dl>
+<div><dt>Modul 3A</dt><dd>Medienpädagogische Betrachtung der Möglichkeiten und Grenzen einer digitalen Vorbereitung auf körperbezogene Deeskalationsübungen.</dd></div>
+<div><dt>Modul 3B</dt><dd>Entwicklung, Erprobung und Evaluation des Angebots mit einer kleinen Gruppe pädagogischer Fachkräfte aus verschiedenen Arbeitsfeldern.</dd></div>
+</dl>
+<p class="signature">Pascal Anna</p>
+</section>
+<aside aria-label="Aktueller Stand"><strong>Aktueller Stand</strong><p>Die Lernumgebung ist in Entwicklung. Lerninhalte und Teilnehmerzugang sind noch nicht freigeschaltet.</p></aside>
 </main>
-<footer><div class="wrap footer-inner"><div><strong>Pascal Anna · Zenkido®</strong>Lernumgebung Deeskalation · Entwurfsstand Oktober 2026</div><div class="footer-note">Studentisches Entwicklungsprojekt. Kein offizielles Lernangebot der FernUniversität in Hagen. Das Hochschullogo verweist auf den Studienkontext.</div></div></footer>
-</body></html>
+<footer><p>Studentisches Projekt bei Zenkido® · Kein offizielles Lernangebot der FernUniversität in Hagen</p></footer>
+</body>
+</html>

@@ -20,3 +20,7 @@ Das Hochschullogo gehört der FernUniversität; es ist kein selbst erstelltes Pr
 Startseite ohne Login oder Datenerfassung. Geplante Inhalte sind als geplant gekennzeichnet. Vor der Pilotphase sind Zugangscodes, serverseitige Speicherung, Evaluation und Teilnehmerinformationen umzusetzen.
 
 Die Texte sind ein KI-unterstützter Arbeitsentwurf nach den Projektideen von Pascal Anna. Sie ersetzen keine eigenständige wissenschaftliche Ausarbeitung für die Hausarbeiten.
+
+## Überarbeitung vom 13.10.2026
+
+Die Startseite wurde nach Pascals Rückmeldung auf eine konkrete Beschreibung und den Studienkontext reduziert. Werbeslogans, dekorative Verlaufsgrafik, Kartenraster und redundante Textblöcke wurden entfernt. Grundlage für weitere Arbeiten ist der versionierte Skill unter `.agents/skills/lernumgebung-deeskalation/SKILL.md`.

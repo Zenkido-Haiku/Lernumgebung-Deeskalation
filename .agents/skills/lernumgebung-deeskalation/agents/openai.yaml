@@ -1,0 +1,6 @@
+interface:
+  display_name: "Lernumgebung Deeskalation"
+  short_description: "Fachliche Inhalte und Gestaltung ohne Werbefloskeln"
+  default_prompt: "Überarbeite die Lernumgebung mit $lernumgebung-deeskalation anhand der aktuellen Projektvorgaben."
+policy:
+  allow_implicit_invocation: true
